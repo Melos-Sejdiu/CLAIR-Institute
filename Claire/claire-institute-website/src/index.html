@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>CLAIR Institute | Cognitive, Language and AI Research Institute</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        html {
+            font-size: 150%;
+        }
+        :root {
+            --main-accent: #f48e6f;
+            --header-footer-bg: #475059;
+        }
+        body {
+            background: #dededd;
+        }
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        .lang-switch button {
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 0;
+            box-shadow: none;
+            outline: none;
+            display: flex;
+            align-items: center;
+        }
+        .lang-switch img {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: border 0.2s;
+            background: transparent;
+        }
+        .lang-switch button.active img {
+            border: 2px solid var(--main-accent);
+        }
+        body, header, main, footer, section, nav, table, th, td, h1, h2, h3, h4, h5, h6, p, ul, li {
+            text-align: center;
+        }
+        nav ul {
+            justify-content: center;
+            display: flex;
+            gap: 0;
+            padding: 0;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            display: flex;
+            align-items: center;
+        }
+        nav ul li:not(:last-child)::after {
+            content: "";
+            display: inline-block;
+            width: 3px;
+            height: 22px;
+            background: var(--main-accent);
+            margin: 0 16px;
+            vertical-align: middle;
+        }
+        nav ul li a {
+            color: #111 !important;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        nav ul li a:hover {
+            color: var(--main-accent) !important;
+        }
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            max-width: 900px;
+            border-collapse: collapse;
+            word-break: break-word;
+        }
+        th, td {
+            padding: 8px 4px;
+            font-size: 1em;
+        }
+        /* Bullet point color */
+        ul, main section ul {
+            display: inline-block;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            list-style: disc inside;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        ul li, main section ul li {
+            color: #111;
+            position: relative;
+            word-break: break-word;
+        }
+        ul li::marker, main section ul li::marker {
+            color: var(--main-accent);
+        }
+        /* Accent color for headings and links */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--main-accent);
+            word-break: break-word;
+        }
+        a {
+            color: var(--main-accent);
+            word-break: break-word;
+        }
+        a:hover {
+            color: #333;
+        }
+        header {
+            background: #fff;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        header h1, header h2, header nav ul li a {
+            color: #111 !important;
+        }
+        footer {
+            background: var(--header-footer-bg);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        section {
+            border: 2px solid #f48e6f;
+            border-radius: 12px;
+            padding: 24px 18px;
+            margin: 32px auto;
+            background: #fff;
+            box-sizing: border-box;
+            max-width: 900px;
+        }
+        /* Responsive styles */
+        @media (max-width: 1100px) {
+            header > div {
+                gap: 40px !important;
+            }
+            .lang-switch {
+                right: 10px;
+                top: 10px;
+            }
+        }
+        @media (max-width: 900px) {
+            header > div {
+                gap: 20px !important;
+            }
+            .lang-switch {
+                right: 5px;
+                top: 5px;
+            }
+            table {
+                font-size: 0.95em;
+            }
+        }
+        @media (max-width: 700px) {
+            header > div {
+                flex-direction: column;
+                align-items: center !important;
+                gap: 12px !important;
+                margin-bottom: 0 !important;
+                height: auto !important;
+            }
+            header > div img {
+                margin-left: 0 !important;
+                width: 80px !important;
+                height: 80px !important;
+            }
+            header > div > div {
+                text-align: center !important;
+            }
+            nav ul {
+                gap: 10px;
+                font-size: 0.95em;
+            }
+            table {
+                font-size: 0.9em;
+            }
+        }
+        @media (max-width: 500px) {
+            .lang-switch img {
+                width: 24px;
+                height: 24px;
+            }
+            header > div img {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            h1 {
+                font-size: 1.2em;
+            }
+            h2 {
+                font-size: 1em;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            table, th, td {
+                font-size: 0.85em;
+            }
+            ul, main section ul {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-switch">
+        <button id="enBtn" class="active" aria-label="English">
+            <img src="assets/images/flag-en.png" alt="English">
+        </button>
+        <button id="sqBtn" aria-label="Shqip">
+            <img src="assets/images/flag-sq.png" alt="Shqip">
+        </button>
+    </div>
+    <header>
+        <!-- Restore original centered title and subtitle -->
+        <div style="margin-bottom: 10px;">
+            <h1 data-en="CLAIR Institute" data-sq="Instituti CLAIR" style="margin: 0;">
+                CL<span style="color:#f48e6f;">AI</span>R Institute
+            </h1>
+            <h2 data-en="Cognitive, Language and AI Research Institute" data-sq="Instituti për Kërkime Kognitive, Gjuhësore dhe të Inteligjencës Artificiale" style="margin: 0;">
+                Cognitive, Language and AI Research Institute
+            </h2>
+        </div>
+        <!-- Trapezoid border around the icon, touching the top and surrounding the icon -->
+        <div style="
+            position: absolute;
+            left: 182px;
+            top: 0;
+            width: 112px;
+            height: 120px;
+            z-index: 1;
+            pointer-events: none;
+            ">
+            <svg width="112" height="120" viewBox="0 0 112 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                <polygon points="16,0 96,0 112,120 0,120"
+                    style="fill:none;stroke:#f48e6f;stroke-width:6;" />
+            </svg>
+        </div>
+        <!-- Place the icon absolutely, centered in the trapezoid -->
+        <img src="assets/images/icon.png" alt="Clair Institute Logo"
+             style="position: absolute; left: 192px; top: 14px; width: 92px; height: 92px; z-index: 2;">
+        <nav>
+            <ul>
+                <li><a href="#about" data-en="About" data-sq="Rreth Nesh">About</a></li>
+                <li><a href="#mission" data-en="Mission" data-sq="Misioni">Mission</a></li>
+                <li><a href="#activities" data-en="Activities" data-sq="Veprimtaritë">Activities</a></li>
+                <li><a href="#contact" data-en="Contact" data-sq="Kontakti">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2 data-en="About CLAIR Institute" data-sq="Rreth Institutit CLAIR">About CLAIR Institute</h2>
+            <p data-en="CLAIR Institute is a scientific association founded in Prishtina on 22/05/2025, dedicated to advancing research in cognitive psychology, linguistics, and artificial intelligence. Our mission is to address complex scientific and technological challenges through innovative research and interdisciplinary collaboration."
+               data-sq="Instituti CLAIR është një shoqatë shkencore e themeluar në Prishtinë më 22/05/2025, e përkushtuar në avancimin e kërkimeve në psikologjinë kognitive, gjuhësi dhe inteligjencë artificiale. Misioni ynë është të adresojmë sfida të ndërlikuara shkencore dhe teknologjike përmes kërkimeve inovative dhe bashkëpunimit ndërdisiplinor.">
+                CLAIR Institute is a scientific association founded in Prishtina on 22/05/2025, dedicated to advancing research in cognitive psychology, linguistics, and artificial intelligence. Our mission is to address complex scientific and technological challenges through innovative research and interdisciplinary collaboration.
+            </p>
+        </section>
+
+        <section id="mission">
+            <h2 data-en="Mission & Objectives" data-sq="Misioni & Qëllimet">Mission & Objectives</h2>
+            <ul>
+                <li data-en="Conduct advanced research on human cognitive processes using innovative scientific methods."
+                    data-sq="Kryejmë kërkime të avancuara mbi proceset njohëse të njeriut duke përdorur metoda shkencore inovative.">
+                    Conduct advanced research on human cognitive processes using innovative scientific methods.
+                </li>
+                <li data-en="Develop and implement research projects focused on linguistics, leveraging artificial intelligence for language analysis."
+                    data-sq="Zhvillojmë dhe zbatojmë projekte kërkimore të fokusuara në gjuhësi, duke përdorur inteligjencën artificiale për analizën e gjuhës.">
+                    Develop and implement research projects focused on linguistics, leveraging artificial intelligence for language analysis.
+                </li>
+                <li data-en="Promote the application of AI technologies for natural human-machine interaction and language understanding."
+                    data-sq="Promovojmë aplikimin e teknologjive të inteligjencës artificiale për ndërveprim natyror njeri-makinë dhe kuptim të gjuhës.">
+                    Promote the application of AI technologies for natural human-machine interaction and language understanding.
+                </li>
+                <li data-en="Provide a platform for international collaboration on innovative research projects addressing emerging technological challenges."
+                    data-sq="Sigurojmë një platformë për bashkëpunim ndërkombëtar në projekte kërkimore inovative që adresojnë sfidat teknologjike të reja.">
+                    Provide a platform for international collaboration on innovative research projects addressing emerging technological challenges.
+                </li>
+                <li data-en="Advance the integration of humanities and technology to address future societal challenges."
+                    data-sq="Avancojmë integrimin e shkencave humane dhe teknologjisë për të adresuar sfidat e së ardhmes.">
+                    Advance the integration of humanities and technology to address future societal challenges.
+                </li>
+            </ul>
+        </section>
+
+        <section id="activities">
+            <h2 data-en="Fields of Activity" data-sq="Fushat e Veprimtarisë">Fields of Activity</h2>
+            <ul>
+                <li data-en="Research & Analysis" data-sq="Hulumtime & Analiza"><strong>Research & Analysis</strong></li>
+                <li data-en="Information Technology" data-sq="Teknologji Informative"><strong>Information Technology</strong></li>
+                <li data-en="Science" data-sq="Shkencë"><strong>Science</strong></li>
+                <li data-en="Social & Psychological Support" data-sq="Ndihmë Sociale & Psikologjike"><strong>Social & Psychological Support</strong></li>
+                <li data-en="Education & Training" data-sq="Edukimi & Trajnimi"><strong>Education & Training</strong></li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2 data-en="Contact" data-sq="Kontakti">Contact</h2>
+            <p>
+                <span data-en="<strong>Address:</strong> Prishtinë, Jakov Xoxa" data-sq="<strong>Adresa:</strong> Prishtinë, Jakov Xoxa"><strong>Address:</strong> Prishtinë, Jakov Xoxa</span><br>
+                <span data-en="<strong>Email:</strong> info@clair-institute.org" data-sq="<strong>Email:</strong> info@clair-institute.org"><strong>Email:</strong> info@clair-institute.org</span><br>
+                <span data-en="<strong>Phone:</strong> +383 44 208 929" data-sq="<strong>Telefoni:</strong> +383 44 208 929"><strong>Phone:</strong> +383 44 208 929</span>
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p data-en="&copy; 2025, CLAIR Institute" data-sq="&copy; 2025, Instituti CLAIR">&copy; 2025, CLAIR Institute</p>
+        <p><a href="#contact" data-en="Contact Us" data-sq="Na Kontaktoni">Contact Us</a></p>
+    </footer>
+
+    <script>
+        // Language switcher logic
+        const enBtn = document.getElementById('enBtn');
+        const sqBtn = document.getElementById('sqBtn');
+        function setLang(lang) {
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.innerHTML = el.getAttribute('data-' + lang);
+            });
+            if(lang === 'en') {
+                enBtn.classList.add('active');
+                sqBtn.classList.remove('active');
+            } else {
+                sqBtn.classList.add('active');
+                enBtn.classList.remove('active');
+            }
+        }
+        enBtn.addEventListener('click', () => setLang('en'));
+        sqBtn.addEventListener('click', () => setLang('sq'));
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>
